@@ -63,7 +63,7 @@ function saveData() {
 
     $.ajax({
         type: 'POST',
-        url: "https://cse120-2021-api.herokuapp.com/data",
+        url: "https://cse120-2021-api.meri.com/data",
         data: tmp,
         cache: false,
         dataType : 'json',
