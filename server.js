@@ -8,7 +8,7 @@ const ObjectId = require('mongodb').ObjectId;
 
 const uri =
   
-  "mongodb+srv://meri_admin:<Mju77ujM_>@cluster0.2lq65.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
+  "mongodb+srv://meri_admin:Mju77ujM_@cluster0.2lq65.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
 
 const client = new MongoClient(uri);
 
