@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head> 
+    <title>Data</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <link href="style.css" rel="stylesheet" type="text/css" />
+    <script
+			src="https://code.jquery.com/jquery-3.5.1.min.js"
+			integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
+			crossorigin="anonymous"></script>
+    <script src="script.js"></script>
+  </head> 
+  <body style="background-color: rgb(221, 246, 252);" onload="loadEditItem()">
+    <label>Full Name</label>
+    <input type="text" id="_id" readonly> <br>
+    <label>Date of Birth</label>
+    <input type="text" id="fullNameForm"><br>
+    <label>Gender</label>
+    <input type="text" id="titleForm"><br>
+    <label>How many years have you been dancing?</label>
+    <input type="text" id="authorForm"><br>
+    <label>What type of dances to you do?</label>
+    <input type="text" id="colourForm"><br>
+    <label>Which style of dancing is more appealing to you?</label>
+    <input type="text" id="coverTypeForm"><br>
+    <label>Which one from the following describes best your perception of dancing?</label>
+    <input type="text" id="otherCoverForm"><br>
+    <label>Who is your role model in dancing?s</label>
+    <input type="text" id="pagesForm"><br>
+    <label>Have you tried partner dances?</label>
+    <input type="text" id="priceForm"><br>
+    <label>Do you need a special sportswear for your dances? </label>
+    <input type="text" id="currencyForm"><br>
+    <label>Did you take part in any dance competition?</label>
+    <input type="text" id="langForm"><br>
+    <label>If you answered yes to the previous question, please name couple of them?</label>
+    <input type="text" id="otherLangForm"><br>
+    <button onclick="updateBook()">Update</button>
+  </body>
+</html>
