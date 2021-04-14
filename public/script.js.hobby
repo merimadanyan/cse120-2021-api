@@ -1,0 +1,388 @@
+const typeOfDancesYouDo = document.querySelectorAll('input[name="language"]');
+
+const yourGender = document.querySelectorAll('input[name="gender"]');
+
+const typeOfDancesYouLike = document.querySelectorAll('input[name="like"]');
+
+const perceptionOfDancing = document.querySelectorAll('input[name="perception"]');
+
+let data= {};
+
+const input = document.querySelectorAll('.other');
+
+
+let leblelanguage, leblegender, leblelike, lebleperception;
+ document.getElementById('submit').addEventListener('click' , (event)=>{
+   sendForm();
+})
+
+input.forEach((input) => {
+    input.addEventListener('change', (event)=>{
+        showInput(event);
+    });
+});
+
+
+function showInput(event){
+    const key = event.target.checked;
+    let sp = event.target.parentElement.querySelector('.sp');
+    let value =  event.target.parentElement.className;
+    if(key==true){
+        sp.innerHTML = '<input id=' + value + ' type="text" name="other" style="border:none;border-bottom:1px solid rgb(211, 208, 208);margin-bottom: 20px;">'
+        document.getElementById(value).
+          addEventListener('change', (event)=>{
+            if (value === 'language') {
+                leblelanguage = document.getElementById(`${value}`).value;
+            }
+            if (value === 'like') {
+                leblelike = document.getElementById(`${value}`).value;
+            }
+          });
+    }
+}
+
+
+typeOfDancesYouDo.forEach((language) => {
+    language.addEventListener('click', (event)=>{
+        const key = event.target.className;
+        if(key === "other"){
+            return;
+        }
+        else{
+            leblelanguage = event.target.value;
+        }
+    });
+});
+
+
+yourGender.forEach((gender) => {
+    gender.addEventListener('click', (event)=>{
+        const key = event.target.className;
+        if(key === "other"){
+            return;
+        }
+        else{
+            leblegender = event.target.value;
+        }
+    });
+});
+
+
+perceptionOfDancing.forEach((perception) => {
+    perception.addEventListener('click', (event)=>{
+        const key = event.target.className;
+        if(key === "other"){
+            return;
+        }
+        else{
+            lebleperception = event.target.value;
+        }
+    });
+});
+
+typeOfDancesYouLike.forEach((like) => {
+    like.addEventListener('click', (event)=>{
+        const key = event.target.className;
+        if(key === "other"){
+            return;
+        }
+        else{
+            leblelike = event.target.value;
+        }
+    });
+});
+
+function sendForm() { 
+    const fullName = document.querySelector('input[name="fullname"]').value;
+    const dateofBirth = document.querySelector('input[type="date" ][name = "originalDate"]').value;
+    const yourGender = leblegender;
+    const yearsofDancing = document.querySelector('input[name="author"]').value;
+    const typeOfDancesYouLike = leblelike;
+    const perceptionOfDancing = lebleperception;
+    const roleModel = document.querySelector('input[name="edition"]').value;
+    const experiencewithPartnerDances = document.querySelector('input[name="dimensions"]').value;
+    const needForSpecialSportsWear = document.querySelector('input[name="publisher"]').value;
+    const participationInCompetitions = document.querySelector('input[name="genre"]').value;
+    const namesOfCompetitions = document.querySelector('input[name="age"]').value;
+    const typeOfDancesYouDo = leblelanguage; 
+    
+    
+    if (fullName == "") {
+        return
+    }
+    if ( dateofBirth == "" ) {
+        return
+    }
+    if (!yourGender) {
+        return
+    }
+    if(!typeOfDancesYouDo){
+        return;
+    }
+    if (!perceptionOfDancing) {
+        return
+    }
+    if (!typeOfDancesYouLike) {
+        return
+    }
+
+    if (yearsofDancing == "") {
+        return
+    }
+    if (needForSpecialSportsWear == "" ) {
+        return
+    }
+    if (participationInCompetitions == "") {
+        return
+    }
+
+    data = {
+        "owner":"MeriMadanyan",
+        "project":"Dance",
+        fullName,
+        dateofBirth,
+        yourGender,
+        yearsofDancing,
+        typeOfDancesYouLike,
+        perceptionOfDancing, 
+        roleModel, 
+        experiencewithPartnerDances, 
+        needForSpecialSportsWear, 
+        participationInCompetitions,
+        namesOfCompetitions,
+        typeOfDancesYouDo,       
+    }
+    
+    console.log(data); 
+   
+ $.ajax({
+    type: 'POST',
+    url: "https://cse-120-2021-api-meri.herokuapp.com/data",
+    data: data,
+    cache: false,
+    dataType : 'json',
+    success: function (data) {
+      console.log("success");
+    },
+    error: function (xhr) {
+      console.error("Error in post", xhr);
+    },
+    complete: function () {
+      console.log("Complete");  
+    }
+  });
+} 
+
+
+
+function deleteData(id) {
+
+    var r = confirm("Are you sure you want to delete the item with the following ID? " + id);
+    if (r == true) {
+      
+    } else {
+      return;
+    }
+
+    let tmp = {
+        "id": id
+    }
+
+    $.ajax({
+        type: 'POST',
+        url: "https://cse-120-2021-api-meri.herokuapp.com/data/delete",
+        data: tmp,
+        cache: false,
+        dataType : 'json',
+        success: function (data) {
+            console.log("success");
+        },
+        error: function (xhr) {
+            console.error("Error in post", xhr);
+        },
+        complete: function () {
+            console.log("Complete");  
+        }
+    });
+}
+
+function updateBook() {
+  var tmp = {
+    "id" : document.getElementById("_id").value,
+    "title" : document.getElementById("titleForm").value
+
+  }
+    $.ajax({
+        type: 'POST',
+        url: "https://cse-120-2021-api-meri.herokuapp.com/data/update",
+        data: tmp,
+        cache: false,
+        dataType : 'json',
+        success: function (data) {
+            console.log("success");
+        },
+        error: function (xhr) {
+            console.error("Error in post", xhr);
+        },
+        complete: function () {
+            console.log("Complete");  
+        }
+    });
+
+}
+
+function loadExistingData() {
+  myBookData = [];
+  myDanceData = [];
+  otherData = [];
+    $.ajax({
+        type : "GET",
+        url : "https://cse-120-2021-api-meri.herokuapp.com/data",
+        dataType : "json",
+        success : function(data) {
+          loadedData = data.data;
+        	console.log("success", data);
+            data.data.forEach(elem => {
+          if (elem["owner"] == "MeriMadanyan") {
+            if (elem["project"] == "Book") {
+              myBookData.push(elem);
+            } else {
+              myDanceData.push(elem);
+            }
+          } else {
+            otherData.push(elem);
+          }
+        })
+        displayData(myBookData, "bookDataContainer");
+        displayData(myDanceData, "danceDataContainer");
+        displayData(otherData, "otherDataContainer");
+      },
+        error : function(data) {
+            console.log("Error");
+        }
+    });
+}
+
+function displayData(data, containerDivName) {
+    document.getElementById(containerDivName).innerHTML = "";
+    data.forEach(elem => {
+        let item = document.createElement("div");
+        item.id = "div" + elem["_id"];
+        item.className = "item";
+        if (Object.keys(elem).length == 1) {
+            let span = document.createElement("span");
+            span.innerHTML = "<i>Empty Element with autogenerated ID: </i>" + elem["_id"];
+            item.appendChild(span);
+        }
+        Object.keys(elem).forEach(key => {
+            if (key != "_id") {
+                let span = document.createElement("span");
+
+                let b = document.createElement("b");
+                b.innerHTML = key + ": ";
+                span.appendChild(b);
+                
+                span.className = "item";
+                if (elem[key]) {
+                    span.innerHTML += elem[key];
+                } else {
+                    let span1 = document.createElement("span");
+                    span1.className = "undefined";
+                    span1.innerHTML = "N/A";
+                    span.appendChild(span1)
+                }
+                item.appendChild(span);
+
+                let br = document.createElement("br");
+                item.appendChild(br);
+            }
+        })
+
+        if (elem["owner"] == "MeriMadanyan") {
+          let button2 = document.createElement("button");
+          button2.innerHTML = "Edit";
+          button2.className = "editButton";
+          button2.id = "edit_"+ elem["_id"];
+          button2.addEventListener("click", function(e){
+          editData(e.target.id);
+          }, false);
+          item.appendChild(button2);
+        }
+
+        if (elem["owner"] == "MeriMadanyan" || (elem["fullname"] && elem["fullname"].indexOf("MeriMadanyan") > -1)) {
+          let button = document.createElement("button");
+          button.innerHTML = "Delete";
+          button.id = elem["_id"];
+          button.addEventListener("click", function(e){
+          deleteData(e.target.id);
+          }, false);
+          item.appendChild(button);
+         }
+         document.getElementById(containerDivName).appendChild(item);
+     
+    })
+
+}
+
+function toggleOtherData() {
+  let otherData = document.getElementById("otherDataContainer");
+  if (otherData.style.display == "block") {
+    otherData.style.display = "none";
+  } else {
+    otherData.style.display = "block";
+  }
+}
+
+
+
+let loadedData = [];
+
+function editData(id){
+ var tmp = id.split("edit_");
+ var item_id = tmp[1];
+ console.log(item_id);
+
+loadedData.forEach(item => {
+    if (item._id == item_id && item["owner"] == "MeriMadanyan") {
+        console.log(item); 
+        localStorage = window.localStorage;
+        localStorage.setItem('editItem', JSON.stringify(item));
+        if (item["project"] == "Book") {
+          document.location  = "edit_book.html"; 
+        } else {
+          document.location  = "edit_dance.html"; 
+        }
+    }
+  })
+}
+
+function loadEditItem() {
+  localStorage = window.localStorage;
+  editItem = JSON.parse(localStorage.getItem("editItem"));
+  console.log(editItem);
+  document.getElementById("_id").value = editItem["_id"];
+  document.getElementById("titleForm").value = editItem["title"];
+  document.getElementById("fullNameForm").value =editItem["fullname"];
+  document.getElementById("authorForm").value = editItem["author"];  
+  document.getElementById("colourForm").value = editItem["colour"]; 
+  document.getElementById("coverTypeForm").value = editItem["covertype"]; 
+  document.getElementById("otherCoverForm").value = editItem["othercovertype"]; 
+  document.getElementById("pagesForm").value = editItem["numberofpages"]; 
+  document.getElementById("priceForm").value = editItem["price"]; 
+  document.getElementById("currencyForm").value = editItem["currency"]; 
+  document.getElementById("langForm").value = editItem["language"]; 
+  document.getElementById("otherLangForm").value = editItem["otherlanguage"];
+  document.getElementById("origLangForm").value = editItem["originallanguage"];
+  document.getElementById("otherOrigLangForm").value = editItem["otheroriginallanguage"];
+  document.getElementById("editionForm").value = editItem["edition"]; 
+  document.getElementById("dimensionsForm").value = editItem["dimensions"];
+  document.getElementById("publisherForm").value = editItem["publisher"];
+  document.getElementById("pubMonthForm").value = editItem["publishingmonth"]; 
+  document.getElementById("pubDayForm").value = editItem["publishingday"];
+  document.getElementById("pubYearForm").value = editItem["publishingyear"];
+  document.getElementById("origPubMonthForm").value = editItem["originalpublishingmonth"];
+  document.getElementById("origPubDayForm").value = editItem["originalpublishingday"];
+  document.getElementById("origPubYearForm").value = editItem["originalpublishingyear"];
+  document.getElementById("genreForm").value = editItem["genre"];
+  document.getElementById("agerestrictForm").value = editItem["agerestriction"];
+}
