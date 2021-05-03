@@ -12,9 +12,11 @@ const input = document.querySelectorAll('.other');
 
 
 let leblelanguage, leblegender, leblelike, lebleperception;
+if (document.getElementById('submit')!=null) {
  document.getElementById('submit').addEventListener('click' , (event)=>{
    sendForm();
 })
+}
 
 input.forEach((input) => {
     input.addEventListener('change', (event)=>{
@@ -207,11 +209,70 @@ function deleteData(id) {
 }
 
 function updateBook() {
+  console.log('true')
+  localStorage = window.localStorage;
+  editItem = JSON.parse(localStorage.getItem("editItem"));
+  console.log(editItem)
   var tmp = {
-    "id" : document.getElementById("_id").value,
-    "title" : document.getElementById("titleForm").value
-
+    "id" : editItem._id,
+    "title" : document.getElementById("title").value,
+    "fullName":document.getElementById("fullName").value,
+    "author":document.getElementById("author").value, 
+    "colour":document.getElementById("colour").value,
+    "number":document.getElementById("page").value, 
+    "price": document.getElementById("price").value,
+    "currency":document.getElementById("currency").value,
+    "edition": document.getElementById("editionForm").value,
+    "publisher":document.getElementById("pubDateForm").value , 
+    "genre":   document.getElementById("genreForm").value
+    //"age": document.getElementById("agerestrictForm").value;
+    //"publisherDate": document.getElementById("publisherForm").value,
+    //"originalDate": document.getElementById("origPubDateForm").value,
+    //"coverType":  document.getElementById("coverType").value;
+    //"originalLanguage": document.getElementById("origLangForm").value,
+    //"language":document.getElementById("language").value 
   }
+    $.ajax({
+        type: 'POST',
+        url: "https://cse-120-2021-api-meri.herokuapp.com/data/update",
+        data: tmp,
+        cache: false,
+        dataType : 'json',
+        success: function (data) {
+            console.log("success");
+        },
+        error: function (xhr) {
+            console.error("Error in post", xhr);
+        },
+        complete: function () {
+            console.log("Complete");  
+        }
+    });
+
+}
+
+function updateDance() {
+  console.log('true')
+  localStorage = window.localStorage;
+  editItem = JSON.parse(localStorage.getItem("editItem"));
+  console.log(editItem)
+  const id = editItem._id
+  var tmp = {
+    "id" : id,
+    "fullName": document.getElementById("fullName").value,
+    "dateofBirth": document.getElementById("BirthDate").value,
+    "yourGender":  document.getElementById("gender").value,
+    "yearsofDancing":  document.getElementById("beDancing").value,
+    // "typeOfDancesYouLike": document.getElementById("typeDance").value,
+    // perceptionOfDancing, 
+    "roleModel":  document.getElementById("role").value, 
+    "experiencewithPartnerDances":  document.getElementById("partenDanc").value, 
+    "needForSpecialSportsWear":  document.getElementById("sportswear").value , 
+    "participationInCompetitions":  document.getElementById("competition").value,
+    "namesOfCompetitions":  document.getElementById("question").value,
+    "typeOfDancesYouD":  document.getElementById("styleDenc").value, 
+  }
+  
     $.ajax({
         type: 'POST',
         url: "https://cse-120-2021-api-meri.herokuapp.com/data/update",
@@ -359,30 +420,40 @@ loadedData.forEach(item => {
 function loadEditItem() {
   localStorage = window.localStorage;
   editItem = JSON.parse(localStorage.getItem("editItem"));
-  console.log(editItem);
-  document.getElementById("_id").value = editItem["_id"];
-  document.getElementById("titleForm").value = editItem["title"];
-  document.getElementById("fullNameForm").value =editItem["fullname"];
-  document.getElementById("authorForm").value = editItem["author"];  
-  document.getElementById("colourForm").value = editItem["colour"]; 
-  document.getElementById("coverTypeForm").value = editItem["covertype"]; 
-  document.getElementById("otherCoverForm").value = editItem["othercovertype"]; 
-  document.getElementById("pagesForm").value = editItem["numberofpages"]; 
-  document.getElementById("priceForm").value = editItem["price"]; 
-  document.getElementById("currencyForm").value = editItem["currency"]; 
-  document.getElementById("langForm").value = editItem["language"]; 
-  document.getElementById("otherLangForm").value = editItem["otherlanguage"];
-  document.getElementById("origLangForm").value = editItem["originallanguage"];
-  document.getElementById("otherOrigLangForm").value = editItem["otheroriginallanguage"];
+  console.log(editItem)
+  const project = editItem.project
+
+  if(project === 'Dance'){
+  document.getElementById("fullName").value = editItem["fullName"];
+  document.getElementById("BirthDate").value = editItem["yourGender"];
+  document.getElementById("gender").value =editItem["dateofBirth"];
+  document.getElementById("beDancing").value = editItem["yearsofDancing"];  
+  document.getElementById("typeDance").value = editItem["typeOfDancesYouDo"]; 
+  document.getElementById("styleDenc").value = editItem["typeOfDancesYouLike"]; 
+  document.getElementById("describes").value = editItem["perceptionOfDancing"]; 
+  document.getElementById("role").value = editItem["roleModel"]; 
+  document.getElementById("partenDanc").value = editItem["experiencewithPartnerDances"]; 
+  document.getElementById("sportswear").value = editItem["needForSpecialSportsWear"]; 
+  document.getElementById("competition").value = editItem["participationInCompetitions"]; 
+  document.getElementById("question").value = editItem["namesOfCompetitions"];
+  }
+  else{
+  document.getElementById("fullName").value = editItem["fullName"];
+  document.getElementById("title").value = editItem["title"];
+  document.getElementById("author").value =editItem["author"];
+  document.getElementById("colour").value = editItem["colour"];  
+  document.getElementById("coverType").value = editItem["coverType"]; 
+  document.getElementById("page").value = editItem["number"]; 
+  document.getElementById("price").value = editItem["price"]; 
+  document.getElementById("currency").value = editItem["currency"]; 
+  document.getElementById("language").value = editItem["language"]; 
+  document.getElementById("origLangForm").value = editItem["originalLanguage"]; 
   document.getElementById("editionForm").value = editItem["edition"]; 
-  document.getElementById("dimensionsForm").value = editItem["dimensions"];
   document.getElementById("publisherForm").value = editItem["publisher"];
-  document.getElementById("pubMonthForm").value = editItem["publishingmonth"]; 
-  document.getElementById("pubDayForm").value = editItem["publishingday"];
-  document.getElementById("pubYearForm").value = editItem["publishingyear"];
-  document.getElementById("origPubMonthForm").value = editItem["originalpublishingmonth"];
-  document.getElementById("origPubDayForm").value = editItem["originalpublishingday"];
-  document.getElementById("origPubYearForm").value = editItem["originalpublishingyear"];
-  document.getElementById("genreForm").value = editItem["genre"];
-  document.getElementById("agerestrictForm").value = editItem["agerestriction"];
+   document.getElementById("pubDateForm").value = editItem["publisherDate"];
+     document.getElementById("origPubDateForm").value = editItem["originalDate"];
+      document.getElementById("genreForm").value = editItem["genre"];
+     document.getElementById("agerestrictForm").value = editItem["age"];
+  }
+
 }
