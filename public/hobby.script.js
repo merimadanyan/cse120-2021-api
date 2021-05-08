@@ -411,7 +411,7 @@ loadedData.forEach(item => {
         if (item["project"] == "Book") {
           document.location  = "edit.book.html"; 
         } else {
-          document.location  = "edit.dance.html"; 
+          document.location  = "edit.hobby.html"; 
         }
     }
   })
