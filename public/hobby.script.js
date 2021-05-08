@@ -439,7 +439,7 @@ function loadEditItem() {
   }
   else{
   document.getElementById("fullName").value = editItem["fullName"];
-  //document.getElementById("title").value = editItem["title"];
+  document.getElementById("title").value = editItem["title"];
   document.getElementById("author").value =editItem["author"];
   document.getElementById("colour").value = editItem["colour"];  
   document.getElementById("coverType").value = editItem["coverType"]; 
