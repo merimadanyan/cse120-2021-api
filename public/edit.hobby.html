@@ -12,6 +12,7 @@
     <script src="hobby.script.js"></script>
   </head> 
   <body style="background-color: rgb(221, 246, 252);" onload="loadEditItem()">
+    <div id="editHobby">
     <label>Full Name</label>
     <input type="text" id="fullName" readonly> <br>
     <label>Date of Birth</label>
@@ -37,5 +38,39 @@
     <label>If you answered yes to the previous question, please name couple of them?</label>
     <input type="text" id="question"><br>
     <button onclick="updateDance()">Update</button>
+</div>
   </body>
+   <style type="text/css">
+     body {
+  background-image: url('https://img.rawpixel.com/s3fs-private/rawpixel_images/website_content/pf-misctexture01-beer-032_1.jpg?w=800&dpr=1&fit=default&crop=default&q=65&vib=3&con=3&usm=15&bg=F4F4F3&ixlib=js-2.2.1&s=c5b50a1c0fe30ea91b3c769b294c8e64'); 
+  background-size: cover;
+  
+}
+      #editHobby{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      button{
+         background-color: rgb(173 216 230);
+          border: none;
+          border-radius: 10px 10px;
+          padding: 8px;
+          font-size: 15px;
+          color: black;
+          cursor: pointer;
+          margin-right: 20px;
+          margin-top: 10px;
+      }
+      label{
+        font-size: 20px;
+        width: 20%;
+        text-align: center;
+      }
+      input{
+        border-radius: 8px;
+        border:none;
+        padding: 5px;
+      }
+  </style>
 </html>
