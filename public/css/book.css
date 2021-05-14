@@ -1,0 +1,98 @@
+body{
+	background-color: rgb(238, 185, 233);
+}
+#cs{
+	background-color: white; 
+	border-radius: 20px 20px; 
+	border-top: 10px solid purple;
+}
+.required{
+	color:red;
+}
+h1{
+	margin: 20px;
+}
+p{
+	color: red; 
+	padding-bottom: 25px; 
+	margin: 20px;
+}
+.inputs{
+	background-color: white;
+	 border-radius: 20px 20px; 
+	 margin-bottom: 20px;
+}
+.labels{
+	font-size: 20px; 
+	margin-left: 37px;  
+	margin-top:37px;
+    display:inline-block;
+}
+.cover label{
+	margin-bottom: 20px;
+
+}
+.language label{
+	margin-bottom: 20px;
+
+
+}
+.originalLanguage label{
+	margin-bottom: 20px;
+
+	
+}
+input[type=submit] {
+    background-color: rgb(238, 94, 238);
+    border: none;
+    border-radius: 10px 10px;
+    padding: 15px;
+    font-size: 15px;
+    color: white;
+    cursor: pointer;
+ }
+
+input[type=submit]:hover {
+    background-color: rgb(240, 122, 240);
+    outline: none;
+}
+
+input[type=submit]:focus {
+    background-color: rgb(226, 128, 226);
+    outline: none;
+}
+.input{
+	border:none;
+    margin: 37px;
+    border-bottom:1px solid rgb(211, 208, 208);
+    font-size: 17px;
+}
+#language{
+	border:none;
+	border-bottom:1px solid rgb(211, 208, 208);
+	margin-bottom: 20px;
+}
+#like{
+	border:none;
+	border-bottom:1px solid rgb(211, 208, 208);
+	margin-bottom: 20px;
+}
+input[type=date]{
+	border:none;
+    margin: 37px;
+    font-size: 16px;
+    
+}
+input[type=radio]{
+	margin-left: 37px;
+	margin-bottom: 20px; 
+}
+.cover label{
+	font-size: 18px;
+}
+.language label{
+	font-size:18px;
+}
+.originalLanguage label{
+	font-size: 18px;
+}
