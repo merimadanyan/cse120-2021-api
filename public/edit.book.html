@@ -4,14 +4,18 @@
     <title>Data</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
- 
+    <link rel="stylesheet" type="text/css" href="../css/edit.css">
     <script
 			src="https://code.jquery.com/jquery-3.5.1.min.js"
 			integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
 			crossorigin="anonymous"></script>
     <script src="hobby.script.js"></script>
   </head> 
+
+  <body onload="loadEditItem()">
+
   <body style="background-color: rgb(221, 246, 252);" onload="loadEditItem()">
+
     <div id="editBook">
     <label>Full name</label>
     <input type="text" id="fullName"><br>
@@ -21,66 +25,85 @@
     <input type="text" id="author"><br>
     <label>Colour</label>
     <input type="text" id="colour"><br>
-    <label>Cover type</label>
-    <input type="text" id="coverType"><br>
+    <div>
+    <label for="coverType" style="font-size: 20px; margin-left:37px;margin-top:37px;margin-bottom: 20px;
+            display:inline-block;">Cover Type</label>
+            <br>
+            <input class="cover1" id="checkCoverPaperBack" type="radio" name="coverType" value = "paperBack" >
+            <label id="cover1" value="paperBack" for="vehicle2" style="font-size: 18px;">PaperBack</label><br>
+            <input class="cover2" id="checkCoverHardcover" type="radio" name="coverType" value="hardcover">
+            <label id="cover2" value="hardcover" for="vehicle2" style="font-size: 18px;">Hardcover</label><br>
+            <input class="other" id="checkCoverOther"type="radio" name="coverType">
+            <label for="vehicle3">Other:</label>
+            <span id="coverSpan">
+                <input id="coverInput" type="text" name="other" style="border:none;
+                                                                  border-bottom:1px solid rgb(211, 208, 208);
+                                                                  margin-bottom: 20px;">
+            </span>
+    </div>
     <label>Number of pages</label>
     <input type="text" id="page"><br>
     <label>Price</label>
     <input type="text" id="price"><br>
     <label>Currency</label>
     <input type="text" id="currency"><br>
-    <label>Language</label>
-    <input type="text" id="language"><br>
-    <label>Original language</label>
-    <input type="text" id="origLangForm"><br>
+    <div>
+    <label for="fullname" style=" margin-left:37px;margin-top:37px;margin-bottom: 20px;
+            display:inline-block;">Language</label>
+            <br>
+            <input class="language1" id="checkEnglish" type="radio" name="language" value="english">
+            <label id="language1" for="vehicle1" > English</label><br>
+            <input class="language2" id="checkArmenian" type="radio" name="language" value="armenian">
+            <label id="language2" for="vehicle2" >Armenian</label><br>
+            <input class="language3" type="radio" id="checkRussian" name="language" value="russian">
+            <label id="language3" for="vehicle3" >Russian</label><br>
+            <input class="language4" type="radio" id="checkFrench" name="language" value="french" >
+            <label id="language4" for="vehicle4" >French</label><br>
+            <input id="checkLanguageOther" class="other" type="radio" name="language">
+            <label for="vehicle4">Other:</label>
+            <span id="languageSpan">
+                <input id="languageInput" type="text" name="other" style="border:none;
+                                                                  border-bottom:1px solid rgb(211, 208, 208);
+                                                                  margin-bottom: 20px;">
+            </span>
+            </span>
+          </div>
+          <div>
+     <label for="fullname" style=" margin-left: 37px; margin-top:37px;margin-bottom: 20px;
+            display:inline-block;">Original language</label>
+            <br>
+            <input id="checkOriginEnglish" class="originalLanguage1" type="radio" name="originalLanguage" value="english">
+            <label id="originalLanguage1" for="vehicle1" > English</label><br>
+            <input  id="checkOriginRussian"class="originalLanguage2" type="radio" name="originalLanguage" value="russian">
+            <label id="originalLanguage2" for="vehicle2">Russian</label><br>
+            <input id="checkOriginFrench" class="originalLanguage3" type="radio" name="originalLanguage" value="french">
+            <label id="originalLanguage3" for="vehicle3" >French</label><br>
+            <input id="checkOriginArmenian" class="originalLanguage4" type="radio" name="originalLanguage" value="armenian">
+            <label id="originalLanguage4" for="vehicle4">Armenian</label><br>
+            <input id="checkOriginLanguageOther" class="other" type="radio" name="originalLanguage" >
+            <label for="vehicle4">Other:</label>
+            <span id="originLanguageSpan">
+                <input id="originLanguageInput" type="text" name="other" style="border:none;
+                                                                  border-bottom:1px solid rgb(211, 208, 208);
+                                                                  margin-bottom: 20px;">
+            </span>
+          </div>
     <label>Edition</label>
-    <input type="text" id="editionForm"><br>
+    <input type="text" id="edition"><br>
     <label>Dimensions</label>
-    <input type="text" id="dimensionsForm"><br>
+    <input type="text" id="dimensions"><br>
     <label>Publisher</label>
-    <input type="text" id="publisherForm"><br>
+    <input type="text" id="publisher"><br>
     <label>Publishing date</label>
-    <input type="text" id="pubDateForm"><br>
+    <input type="text" id="pubDate"><br>
     <label>Original Publishing Date</label>
-    <input type="text" id="origPubDateForm"><br>
+    <input type="text" id="origPubDate"><br>
     <label>Genre</label>
-    <input type="text" id="genreForm"><br>
+    <input type="text" id="genre"><br>
     <label>Age restriction</label>
-    <input type="text" id="agerestrictForm">
+    <input type="text" id="age">
     <button onclick="updateBook()">Update</button>
 </div>
   </body>
-  <style type="text/css">
-     body {
-  background-image: url('https://img.rawpixel.com/s3fs-private/rawpixel_images/website_content/pf-misctexture01-beer-032_1.jpg?w=800&dpr=1&fit=default&crop=default&q=65&vib=3&con=3&usm=15&bg=F4F4F3&ixlib=js-2.2.1&s=c5b50a1c0fe30ea91b3c769b294c8e64'); 
-  background-size: cover;
-  
-}
-      #editBook{
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-      }
-      button{
-         background-color: rgb(173 216 230);
-          border: none;
-          border-radius: 10px 10px;
-          padding: 8px;
-          font-size: 15px;
-          color: black;
-          cursor: pointer;
-          margin-right: 20px;
-          margin-top: 10px;
-      }
-      label{
-        font-size: 20px;
-        width: 20%;
-        text-align: center;
-      }
-      input{
-        border-radius: 8px;
-        border:none;
-        padding: 5px;
-      }
-  </style>
+
 </html>
