@@ -1,0 +1,67 @@
+body{
+	background-color: rgb(221, 246, 252);
+}
+#cs{
+	background-color: white; 
+	border-radius: 20px 20px; 
+	border-top: 10px solid lightblue;
+}
+h1{
+	margin: 20px;
+}
+p{
+	color: red;
+	padding-bottom: 25px; 
+	margin: 20px;
+}
+.inputs{
+	
+	background-color: white; 
+	border-radius: 20px 20px;
+	margin-bottom: 20px;
+}
+.perception{
+	margin-bottom: 20px;
+}
+.labels{
+	font-size: 20px; 
+	margin-top:37px; 
+	margin-left: 37px;
+    display:inline-block;
+}
+ input[type=submit] {
+    background-color: rgb(173 216 230);
+    border: none;
+    border-radius: 10px 10px;
+    padding: 15px;
+    font-size: 15px;
+    color: black;
+    cursor: pointer;;
+}
+
+input[type=submit]:focus {
+    background-color: rgb(135 206 235);
+    outline: none;
+}
+input[type=date]{
+	border:none;
+    margin: 37px;
+    font-size: 16px;
+}
+.required{
+	color:red;
+}
+.input{
+	border:none;
+    margin: 37px;
+    border-bottom:1px solid rgb(211, 208, 208);
+    font-size: 17px;
+}
+input[type=radio]{
+	margin-left:37px;
+	margin-bottom: 20px;
+}
+input[type=checkbox]{
+	margin-left:37px;
+	margin-bottom: 20px;
+}
