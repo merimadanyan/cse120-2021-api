@@ -5,7 +5,8 @@ const language = document.querySelectorAll('input[name="language"]');
 
 const originalLanguage =  document.querySelectorAll('input[name="originalLanguage"]');
 const input = document.querySelectorAll('.other');
-let labelCover ,leblelanguage,lebleOriginalLanguage;
+
+let labelCover,leblelanguage,lebleOriginalLanguage;
 
 document.getElementById('sumbit').addEventListener('click' , (event)=>{
    sendForm();
@@ -21,11 +22,23 @@ function showInput(event){
     const key = event.target.checked;
     let sp = event.target.parentElement.querySelector('.sp');
     let value =  event.target.parentElement.className;
+    
     if(key==true){
-        sp.innerHTML = '<input id=' + value + ' type="text" name="other" style="border:none;border-bottom:1px solid rgb(211, 208, 208);margin-bottom: 20px;">'
-        document.getElementById(value).
-          addEventListener('change', (event)=>{
-            labelCover = event.target.value;
+          sp.innerHTML = '<input id='+ value +' type="text" name="other" style="border:none;border-bottom:1px solid rgb(211, 208, 208);margin-bottom: 20px;">';
+        document.querySelector(`#${value}`).addEventListener('change', (event)=>{
+            
+            if(value =='cover'){
+                labelCover = event.target.value;
+             
+            }
+            if(value == 'language '){
+                leblelanguage = event.target.value;
+                
+            }
+            if(value =='originalLanguage '){
+                lebleOriginalLanguage =event.target.value;
+                
+            }
           });
     }
 }
@@ -33,10 +46,14 @@ function showInput(event){
 coverType.forEach((cover) => {
     cover.addEventListener('click', (event)=>{
         const key = event.target.className;
+        let input = document.getElementById('cover');
         if(key === "other"){
             return;
         }
         else{
+            if(input){
+                input.remove();
+            }
             labelCover = event.target.value;
         }
     });
@@ -44,10 +61,14 @@ coverType.forEach((cover) => {
 language.forEach((language) => {
     language.addEventListener('click', (event)=>{
         const key = event.target.className;
+        let input = document.getElementById('language');
         if(key === "other"){
             return;
         }
         else{
+            if(input){
+                input.remove();
+            }
             leblelanguage = event.target.value;
         }
     });
@@ -56,10 +77,14 @@ language.forEach((language) => {
 originalLanguage.forEach((language) => {
     language.addEventListener('click', (event)=>{
         const key = event.target.className;
+        let input = document.getElementById('originalLanguage');
         if(key === "other"){
             return;
         }
         else{
+            if(input){
+                input.remove();
+            }
             lebleOriginalLanguage = event.target.value;
         }
     });
@@ -140,6 +165,8 @@ function sendForm() {
         language,
     }
     console.log(data);
+
+
      $.ajax({
     type: 'POST',
     url: "https://cse-120-2021-api-meri.herokuapp.com/data",
@@ -148,6 +175,7 @@ function sendForm() {
     dataType : 'json',
     success: function (data) {
       console.log("success");
+      document.location.replace ("add.html");
     },
     error: function (xhr) {
       console.error("Error in post", xhr);
@@ -168,6 +196,7 @@ function loadExistingData() {
       console.log("success", data);
       existingData = data;
       displayData(existingData.data);
+    
     },
     error : function(data) {
         console.log("Error")
